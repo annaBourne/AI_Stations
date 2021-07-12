@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using stations.Services;
 using System;
@@ -33,8 +32,6 @@ namespace Ai.Stations.Controllers
                 dictionary.Add(item, item);
             }
 
-
-
             if (List.Count == 0)
             {
                 Console.WriteLine("No List");
@@ -51,10 +48,7 @@ namespace Ai.Stations.Controllers
             var stations = new StationsService();
             var one = stations.getStationbytitle(string.Empty);
 
-
             return one;
         }
     }
 }
-
-
