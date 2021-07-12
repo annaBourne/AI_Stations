@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using stations.Services;
 using System;
 using System.Collections.Generic;
+using Ai.Stations.Services;
 
 namespace Ai.Stations.Controllers
 {
     [ApiController]
     [Produces("application/json")]
+    [Route("api")]
     public class StationsController : ControllerBase
     {
         private readonly ILogger<StationsController> _logger;
@@ -19,11 +20,11 @@ namespace Ai.Stations.Controllers
         }
 
         [HttpGet]
-        [Route("api/stations")]
+        [Route("stations")]
         public ActionResult<Dictionary<string, object>> GetStations()
         {
             var stations = new StationsService();
-            List<string> List = stations.getList();
+            List<string> List = StationsService.GetList();
 
             var dictionary = new Dictionary<string, object>();
 
@@ -42,11 +43,11 @@ namespace Ai.Stations.Controllers
         }
 
         [HttpGet]
-        [Route("api/station/{?stationName}")]
+        [Route("station/{?stationName}")]
         public ActionResult<string> GetStation(string stationName)
         {
             var stations = new StationsService();
-            var one = stations.getStationbytitle(string.Empty);
+            var one = StationsService.GetStationByTitle(string.Empty);
 
             return one;
         }

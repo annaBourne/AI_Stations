@@ -1,24 +1,21 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Ai.Stations.Dto;
+using Newtonsoft.Json;
 
-namespace stations.Services
+namespace Ai.Stations.Services
 {
     public class StationsService
     {
 
-        public List<string> getList()
+        public static List<string> GetList()
         {
-            //if ()
-            //{
-
-            //    return GetList();
-            //}
+            var features = JsonConvert.DeserializeObject<StationsListDto>("@/Data/stations.json");
+            
 
             return new List<string>();
         }
 
-        public string getStationbytitle(string stationName)
+        public static string GetStationByTitle(string stationName)
         {
             //if (!stationName)
             //{
@@ -28,11 +25,6 @@ namespace stations.Services
 
             return string.Empty;
         }
-
-
-
-
-
     }
 }
 
