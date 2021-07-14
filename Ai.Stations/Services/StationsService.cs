@@ -6,24 +6,16 @@ namespace Ai.Stations.Services
 {
     public class StationsService
     {
-
-        public static List<string> GetList()
+        public List<Feature> GetList()
         {
-            var features = JsonConvert.DeserializeObject<StationsListDto>("@/Data/stations.json");
-            
-
-            return new List<string>();
+            return JsonConvert.DeserializeObject<Dto.Stations>("@/Data/stations.json")?.Features;
         }
 
-        public static string GetStationByTitle(string stationName)
+        public Feature GetStationByTitle(string stationName)
         {
-            //if (!stationName)
-            //{
+            var features = GetList();
 
-            //    return Getone();
-            //}
-
-            return string.Empty;
+            return features.Find(x => x.Properties.Title == stationName);
         }
     }
 }

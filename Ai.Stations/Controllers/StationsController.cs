@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using Ai.Stations.Services;
+using Ai.Stations.Dto;
 
 namespace Ai.Stations.Controllers
 {
@@ -21,35 +22,27 @@ namespace Ai.Stations.Controllers
 
         [HttpGet]
         [Route("stations")]
-        public ActionResult<Dictionary<string, object>> GetStations()
+        public ActionResult<List<Feature>> GetStations()
         {
-            var stations = new StationsService();
-            List<string> List = StationsService.GetList();
+            var service = new StationsService();
+            var list = service.GetList();
 
-            var dictionary = new Dictionary<string, object>();
-
-            foreach (var item in List)
+            if (list.Count == 0)
             {
-                dictionary.Add(item, item);
+                Console.WriteLine("List is not populated");
             }
 
-            if (List.Count == 0)
-            {
-                Console.WriteLine("No List");
-
-            }
-
-            return dictionary;
+            return list;
         }
 
         [HttpGet]
-        [Route("station/{?stationName}")]
-        public ActionResult<string> GetStation(string stationName)
+        [Route("station/{stationName}")]
+        public ActionResult<Feature> GetStation(string stationName)
         {
-            var stations = new StationsService();
-            var one = StationsService.GetStationByTitle(string.Empty);
+            var service = new StationsService();
+            var feature = service.GetStationByTitle(stationName);
 
-            return one;
+            return feature;
         }
     }
 }
