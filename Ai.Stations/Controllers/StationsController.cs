@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using Ai.Stations.Services;
@@ -12,20 +11,19 @@ namespace Ai.Stations.Controllers
     [Route("api")]
     public class StationsController : ControllerBase
     {
-        private readonly ILogger<StationsController> _logger;
-        private readonly StationsService Service;
+        private readonly StationsService _service;
 
-        public StationsController(ILogger<StationsController> logger)
+        public StationsController(StationsService service)
         {
-            _logger = logger;
+            _service = service;
         }
 
         [HttpGet]
         [Route("stations")]
-        public ActionResult<List<Feature>> GetStations()
+        public ActionResult<List<Feature>> GetStations(string filePath)
         {
             var service = new StationsService();
-            var list = service.GetList();
+            var list = service.GetList(filePath);
 
             if (list.Count == 0)
             {
@@ -37,10 +35,10 @@ namespace Ai.Stations.Controllers
 
         [HttpGet]
         [Route("station/{stationName}")]
-        public ActionResult<Feature> GetStation(string stationName)
+        public ActionResult<Feature> GetStation(string stationName, string filePath)
         {
             var service = new StationsService();
-            var feature = service.GetStationByTitle(stationName);
+            var feature = service.GetStationByTitle(stationName, filePath);
 
             return feature;
         }
