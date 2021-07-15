@@ -22,8 +22,7 @@ namespace Ai.Stations.Controllers
         [Route("stations")]
         public ActionResult<List<Feature>> GetStations()
         {
-            var service = new StationsService();
-            var list = service.GetList();
+            var list = _service.GetList();
 
             if (list.Count == 0)
             {
@@ -37,8 +36,7 @@ namespace Ai.Stations.Controllers
         [Route("station/{stationName}")]
         public ActionResult<Feature> GetStation(string stationName)
         {
-            var service = new StationsService();
-            var feature = service.GetStationByTitle(stationName);
+            var feature = _service.GetStationByTitle(stationName);
 
             return feature;
         }
