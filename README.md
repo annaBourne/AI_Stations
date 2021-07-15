@@ -20,4 +20,4 @@ I realise I should have written the test code first, but old habits took over an
 
 ## Next Steps
 
-To further develop the project, I would begin by setting up the SSL certificates to configure a more secure endpoint.  I would install something like Swagger as an easy way to be able to visualise the results of hitting the endpoints. 
+To further develop the project, I would begin by setting up the SSL certificates to configure a more secure endpoint.  I would install something like Swagger as an easy way to be able to visualise the results of hitting the endpoints.  I would also add some integration testing by Mocking ( using Moq; ) out the Service and the Controller.
