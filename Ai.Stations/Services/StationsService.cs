@@ -7,14 +7,15 @@ namespace Ai.Stations.Services
 {
     public class StationsService
     {
-        public List<Feature> GetList(string filepath)
+        public List<Feature> GetList()
         {
-            return JsonConvert.DeserializeObject<Dto.Stations>(File.ReadAllText(filepath))?.Features;
+            return JsonConvert.DeserializeObject<Dto.Stations>
+                (File.ReadAllText(@"Data/stations.json"))?.Features;
         }
 
-        public Feature GetStationByTitle(string stationName, string filepath)
+        public Feature GetStationByTitle(string stationName)
         {
-            var features = GetList(filepath);
+            var features = GetList();
 
             return features.Find(x => x.Properties.Title == stationName);
         }

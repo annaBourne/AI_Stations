@@ -20,10 +20,10 @@ namespace Ai.Stations.Controllers
 
         [HttpGet]
         [Route("stations")]
-        public ActionResult<List<Feature>> GetStations(string filePath)
+        public ActionResult<List<Feature>> GetStations()
         {
             var service = new StationsService();
-            var list = service.GetList(filePath);
+            var list = service.GetList();
 
             if (list.Count == 0)
             {
@@ -35,10 +35,10 @@ namespace Ai.Stations.Controllers
 
         [HttpGet]
         [Route("station/{stationName}")]
-        public ActionResult<Feature> GetStation(string stationName, string filePath)
+        public ActionResult<Feature> GetStation(string stationName)
         {
             var service = new StationsService();
-            var feature = service.GetStationByTitle(stationName, filePath);
+            var feature = service.GetStationByTitle(stationName);
 
             return feature;
         }
